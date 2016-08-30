@@ -1,0 +1,43 @@
+<% provide(:title, "Placementtag View") %>
+
+<div class="page-header">
+	<h1>Sizmek Placement Tag 作成結果</h1>
+</div>
+
+<% headers,lines = csv_split(params[:file]) %>
+
+<table class="table table-bordered table-striped" id="table_id">
+  <thead>
+    <tr>
+      <% headers.each do |header| %>
+      <th><%= header %></th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <% lines.each do |line| %>
+    <tr>
+      <%
+        count = 0
+        placementid = ""
+      %>
+      <% line.each do |sel| %>
+        <% if count == 0 %>
+          <% placementid = sel %>
+        <% end %>
+        <% if count == 28 %>
+          <td><p class="label label-default">タグ</p>
+              <p><%= sel %></p>
+              <p class="label label-default">表示</p>
+              <p id="<%= placementid %>"><%= sel.html_safe %></p>
+          </td>
+        <% else %>
+          <td><%= sel %></td>
+        <% end %>
+        <% count = count + 1 %>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+

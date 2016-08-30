@@ -1,0 +1,13 @@
+<% provide(:title, "Index") %>
+
+<div class="list-group">
+
+	<%= link_to placementtags_path, { :class => "list-group-item" } do %>
+		<h4 class="list-group-item-heading">Sizmek Placement Tag 作成</h4>
+		<p class="list-group-item-text">Sizmek プレイスメントタグをプレビューするツール</p>
+	<% end %>
+	<%= link_to treasuredatatags_path, { :class => "list-group-item" } do %>
+		<h4 class="list-group-item-heading">Treasuredata Tag 作成</h4>
+		<p class="list-group-item-text">トレジャーデータのタグを作成するツール（資生堂案件）</p>
+	<% end %>
+</div>

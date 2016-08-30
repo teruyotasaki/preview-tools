@@ -1,0 +1,33 @@
+<% provide(:title, "Placementtag Index") %>
+
+<div class="page-header">
+	<h1>Sizmek Placement Tag 作成</h1>
+</div>
+
+<div id="linkmsg" class="list-group">
+</div>
+<script language="JavaScript"><!--
+if(document.domain != "13.78.48.83"){
+	console.log("ドメイン名："+document.domain);
+	$('#linkmsg').append('	<a class="list-group-item list-group-item-danger" href="http://13.78.48.83/preview-placementtag/">このページはテストページです。すぐに移動してください。</a>');
+}
+// --></script>
+
+<%= form_tag placementtagsview_path, multipart: true do %>
+  <%= file_field_tag :file ,class: "btn btn-default"%>
+  <%= submit_tag "インポート", class: "btn btn-primary"  %>
+<% end %>
+
+<%= link_to "サンプルCSVファイル",{:action => "downloadcsv"} %>
+
+<div class="list-group">
+	<a class="list-group-item" href="#">
+		<h4 class="list-group-item-heading">説明：</h4>
+		<p class="list-group-item-text">sizmekのプレイスメントタグをプレビューするツールです。</p>
+		<p class="list-group-item-text">確認したいcsvファイルを選択してインポートしてください。</p>
+		<p class="list-group-item-text">ファイルの1行目はヘッダ行、2行目以降をデータ行としてください。</p>
+		<p class="list-group-item-text">ac列にプレイスメントタグが格納されているものとみなし展開します。</p>
+		<p class="list-group-item-text">表示の際に1タグにつき1imp発生します。</p>
+	</a>
+</div>
+

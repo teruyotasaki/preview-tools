@@ -1,0 +1,19 @@
+<% provide(:title, "Treasuredatatag View") %>
+
+<div class="page-header">
+	<h1>Treasuredata Tag 作成結果</h1>
+</div>
+
+<p><!-- % headers,lines = csv_split(params[:file]) % --></p>
+<% resulttag = generaate_tdtag() %>
+
+<form class="form-horizontal">
+	<div class="form-group">
+
+    <div class="col-sm-10">
+      <textarea rows="20" class="form-control" id="InputTextarea" onclick="this.select(0,this.value.length)">
+<%= resulttag %>
+      </textarea>
+    </div>
+	</div>
+</form>

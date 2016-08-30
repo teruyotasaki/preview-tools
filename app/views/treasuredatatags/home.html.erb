@@ -1,0 +1,195 @@
+<% provide(:title, "Treasuredatatag Index") %>
+
+<div class="page-header">
+	<h1>Treasuredata Tag 作成</h1>
+</div>
+
+<div class="list-group">
+	<a class="list-group-item" href="#">
+		<h4 class="list-group-item-heading">説明：</h4>
+		<p class="list-group-item-text">資生堂案件の Treasuredata のタグを作成するツールです。</p>
+		<p class="list-group-item-text">各項目を選択/入力して作成してください。</p>
+	</a>
+</div>
+
+<!-- テーブル名が選択されなかった時のエラー -->
+<% if @errormsg.present? %>
+<h2 class="text-danger"><%= @errormsg %></h2>
+<% end %>
+
+<%= form_tag treasuredatatagsview_path do %>
+
+	<!-- テーブル選択 -->
+  <div class="well">
+    <label for="InputTable"><span class="text-danger">*</span>テーブルを選択</label>
+    <div class="radio">
+  		<label>
+  			<input type="radio" name="tablename" value="log_web_ads"> log_web_ads
+        <span id="helpBlock" class="help-block">タイアップ広告用の閲覧ログ。</span>
+  		</label>
+  	</div>
+  	<div class="radio">
+  		<label>
+  			<input type="radio" name="tablename" value="log_web_bco"> log_web_bco
+        <span id="helpBlock" class="help-block">Beauty &co.の閲覧ログ</span>
+  		</label>
+  	</div>
+  	<div class="radio">
+  		<label>
+  			<input type="radio" name="tablename" value="log_web_wp"> log_web_wp
+        <span id="helpBlock" class="help-block">watashi+の閲覧ログ with intimate merger id</span>
+  		</label>
+  	</div>
+  </div>
+
+	<!-- 計測種別 -->
+  <div class="well">
+    <label for="InputAction"><span class="text-danger">*</span>計測種別を選択</label>
+    <div class="radio">
+  		<label>
+  			<input type="radio" name="tag" value="pv"> PV計測
+  		</label>
+  	</div>
+  	<div class="radio">
+  		<label>
+  			<input type="radio" name="tag" value="click"> クリック
+  		</label>
+  	</div>
+	</div>
+
+	<!-- ss_brand -->
+	<div class="well">
+		<label for="InputBrand">ss_brand を選択/入力</label>
+		<input class="form-control" type="text" id="InputBrands" name="ss_brand" list="InputBrand" autocomplete="on">
+		<datalist id="InputBrand">
+			<option></option>
+			<option>elixir</option>
+			<option>Girls_shiseido_TGC</option>
+		</datalist>
+	</div>
+
+	<!-- ss_product -->
+	<div class="well">
+		<label for="InputProduct">ss_product を選択/入力
+
+			<!-- start モーダルウィンドウ -->
+			<style>
+			/* modal表示時の縦位置 */
+			.modalcenter{
+			padding:10% 0;
+			}
+			/* modalフッターのテキスト位置 */
+			.modal-img_footer {
+			padding: 10px;
+			text-align: center;
+			}
+			</style>
+			<!-- モーダルウィンドウを表示するボタンを設置 -->
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">
+			項目を表示
+			</button>
+			
+			<div class="container">
+			<div class="row">
+			<div class="col-sm-6">
+			
+			<!-- 表示されるモーダルウィンドウ -->
+			<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			        <h4 class="modal-title" id="myModalLabel">ss_product 項目</h4>
+			      </div>
+			      <div class="modal-body">
+<pre>
+CleansingForm
+CleansingMousse
+ControlBaseUV
+ControlBaseUVN
+DayCareRevolutionC30
+DayCareRevolutionC50
+DayCareRevolutionW30
+DayCareRevolutionW50
+EnrichedCream
+EnrichedSerum
+FacialEffectMassageCream
+LiftEmulsionCompact
+LiftingMoistureCompactUV
+LiftingMoistureEmulsion
+LiftingMoistureLotion
+LiftingMoistureMask
+LiftingNightCream
+LoosePowder
+MakeupCleasingCream
+MakeupCleasingGel
+MakeupCleasingLotion
+MakeupCleasingOil
+PressedPowder
+PurifyCleasingFoam
+PurifyCleasingGelCream
+PurifyCleasingOil
+PurifyCleasingSoap
+RefreshingToningLotion
+ResetBrightenist
+RetinoVitalCream
+RetinoVitalEssence
+RetinoVitalEyeMask
+SleepingGelPack
+WhiteningClearEffectMask
+WhiteningClearEmulsion
+WhiteningClearLotion
+WhiteningCompact
+WhiteningToneUpMassageCream
+WhiteningToningLotion
+trial_7weeks
+</pre>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+			</div><!-- col -->
+			</div><!-- row -->
+			</div><!-- container -->
+			<!-- end モーダルウィンドウ -->
+		</label>
+		<input class="form-control" type="text" name="ss_product" autocomplete="on">
+	</div>
+
+	<!-- ss_level -->
+	<div class="well">
+		<label for="InputLevel">ss_level を選択/入力</label>
+		<input class="form-control" type="text" id="InputLevels" name="ss_level" list="InputLevel" autocomplete="on">
+		<datalist id="InputLevel">
+			<option></option>
+			<option>Advocary</option>
+			<option>Attention</option>
+			<option>Intension_trial</option>
+			<option>Intensiton_purchase</option>
+			<option>Interest</option>
+		</datalist>
+	</div>
+
+	<!-- ss_cluster -->
+	<div class="well">
+		<label for="InputCluster">ss_cluster を選択/入力</label>
+		<input class="form-control" type="text" id="InputClusters" name="ss_cluster" list="InputCluster" autocomplete="on">
+		<datalist id="InputCluster">
+			<option></option>
+			<option>EI_1</option>
+			<option>EI_3</option>
+			<option>EI_4</option>
+			<option>TGC</option>
+			<option>TGC_bco</option>
+		</datalist>
+	</div>
+
+
+  <%= submit_tag "タグ作成", class: "btn btn-primary"  %>
+  <%= reset_tag "リセット", class: "btn btn-defauls"  %>
+
+<% end %>
+
