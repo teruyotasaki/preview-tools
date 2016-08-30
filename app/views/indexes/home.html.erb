@@ -1,5 +1,14 @@
 <% provide(:title, "Index") %>
 
+<div id="linkmsg" class="list-group">
+</div>
+<script language="JavaScript"><!--
+if(document.domain != "13.78.48.83"){
+	console.log("ドメイン名："+document.domain);
+	$('#linkmsg').append('	<a class="list-group-item list-group-item-danger" href="http://13.78.48.83/preview-tools/">このページはテストページです。すぐに移動してください。</a>');
+}
+// --></script>
+
 <div class="list-group">
 
 	<%= link_to placementtags_path, { :class => "list-group-item" } do %>

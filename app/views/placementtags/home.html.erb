@@ -4,15 +4,6 @@
 	<h1>Sizmek Placement Tag 作成</h1>
 </div>
 
-<div id="linkmsg" class="list-group">
-</div>
-<script language="JavaScript"><!--
-if(document.domain != "13.78.48.83"){
-	console.log("ドメイン名："+document.domain);
-	$('#linkmsg').append('	<a class="list-group-item list-group-item-danger" href="http://13.78.48.83/preview-placementtag/">このページはテストページです。すぐに移動してください。</a>');
-}
-// --></script>
-
 <%= form_tag placementtagsview_path, multipart: true do %>
   <%= file_field_tag :file ,class: "btn btn-default"%>
   <%= submit_tag "インポート", class: "btn btn-primary"  %>
