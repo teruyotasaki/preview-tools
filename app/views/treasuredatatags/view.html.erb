@@ -4,16 +4,40 @@
 	<h1>Treasuredata Tag 作成結果</h1>
 </div>
 
-<p><!-- % headers,lines = csv_split(params[:file]) % --></p>
 <% resulttag = generaate_tdtag() %>
 
-<form class="form-horizontal">
-	<div class="form-group">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-bordered">
+    <thead>
+        <tr>
+            <td>項目</td><td>値</td>
+        </tr>
+    </thead>
+    <tbody>
+        <% params.each do |key,var|%>
+            <% if key != "utf8" %>
+            <% if key != "authenticity_token" %>
+            <tr><td><%= key %></td><td><%= var %></td></tr>
+            <% end %>
+            <% end %>
+        <% end %>
 
-    <div class="col-sm-10">
-      <textarea rows="20" class="form-control" id="InputTextarea" onclick="this.select(0,this.value.length)">
-<%= resulttag %>
-      </textarea>
-    </div>
-	</div>
-</form>
+        <tr>
+            <td>タグ</td>
+            <td>
+                <form class="form-horizontal">
+                	<div class="form-group">
+                
+                    <div class="col-sm-10">
+                      <textarea rows="20" class="form-control" id="InputTextarea" onclick="this.select(0,this.value.length)"><%= resulttag %></textarea>
+                    </div>
+                	</div>
+                </form>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+</div>
+
+
