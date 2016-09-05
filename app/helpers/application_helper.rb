@@ -28,4 +28,5 @@ module ApplicationHelper
     tag :input, { "type" => "reset", "value" => value }.update(options)
   end
 
+
 end

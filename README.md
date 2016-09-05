@@ -22,3 +22,7 @@ The Cloud9 IDE team
 
 Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
 To watch some training videos, visit http://www.youtube.com/user/c9ide
+How to use:
+
+- /image_test/index : Image File (Ad creatives) checker
+- /url_checker/index : URL Checker. Check the url is 200Ok or not

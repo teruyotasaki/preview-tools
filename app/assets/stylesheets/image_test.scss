@@ -1,0 +1,20 @@
+// Place all the styles related to the ImageTest controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.test_failed { color: red; }
+.test_ok { color: green; }
+
+dt.testResultEach { border-top: solid 2px black;}
+dl.testResultEachTest dt { float: left; margin-right:2em;}
+
+ul.testcase_value:after { 
+  content: ".";
+  clear: both;
+  height: 0;
+  display: block;
+  visibility: hidden;
+}
+ul.testcase_value { display: inline-block; }
+li.testcase_value {
+float: left; width: 9em; display:block; font-family: monospace;
+}

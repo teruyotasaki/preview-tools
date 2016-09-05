@@ -1,0 +1,75 @@
+<% provide(:title, "ImageTest Index") %>
+
+<div class="page-header">
+	<h1>ImageTest</h1>
+  <h2>テスト条件</h2>
+</div>
+
+<div class="form-group">
+
+<%= form_tag('/image_test/index', {method: :post, multipart:true}) do %>
+  <p>
+  <dl class="testcases">
+    <dt>検査する画像ファイル:</dt>
+    <dd><input type="file" name="images[]" multiple="yes" /> (複数指定可能)</dd>
+    <dt>Width x Height: </dt>
+    <dd>
+    <ul class="testcase_value">
+      <% @option_size.each do |size|
+	checked = (@choisenSizes && @choisenSizes[size]) || false
+    %>
+  <li class="testcase_value"> <%=check_box 'sizes', size, {:checked => checked } %><%=size %> </li>
+    <% end %>
+    </ul>
+    </dd>
+    <dt>Width x Height 手入力: (改行や半角スペース区切り, <code>幅x高さ</code>)</dt>
+    <dd><textarea name="imagesizes_txt" cols="40" rows="5"><%= @imagesizes_txt %></textarea></dd>
+    <dt>上限KB:</dt><dd> <input type="text" name="upper_kilobytes" value="<%= @test_upper_kb %>" /></dd>
+    <dt>透過OK:</dt><dd> <input type="checkbox" name="allow_transparent" value="checked" /></dd>
+  </dl>
+  <input type="submit" />
+<% end %>
+</div>
+<% unless @imageInfos.nil? %>
+  <h2>結果</h2>
+  上限KB: <%= @test_upper_kb || "設定なし" %>
+  Size: <%= @testSizes.map{|ts| "#{ts[:width]}x#{ts[:height]}"}.join(", ") %>
+
+<dl class="testResults">
+<% @imageInfos.each do |ii| 
+  # count number of failed
+  numFailed = ii[:tests].inject(0){|sum, t| sum + (t[:result] ? 0 : 1)}
+  cssClass = numFailed == 0 ? "test_ok" : "test_failed"
+
+%>
+  <dt class="testResultEach <%= cssClass %>">Filename: <code><%= ii[:original_filename] %></code> : Failed = <%= numFailed %></dt>
+  <dd>
+    <img src="<%=ii[:base64]%>" />
+    <dl class="testResultEachTest">
+    <% ii[:tests].each do |eachTest|
+
+      case eachTest[:result]
+      when true
+	cssClass = "test_ok"
+	resStr = "OK"
+      when false
+	cssClass = "test_failed"
+	resStr = "FAILED"
+      when :neutral
+	cssClass = "test_ok"
+	resStr = "Neutral"
+      end
+  %>
+<dt class="<%=cssClass%>"><%= eachTest[:name] %></dt>
+<dd class="<%=cssClass%>"><%= resStr %> : <%=eachTest[:message] || "None" %></dd>
+<% end #li[:tests].each %>
+<dt>その他</dt><dd>再生時間=<%= ii[:animation_seconds] %> ,
+Channel Depth= <%= ii[:channel_depth] %> ,
+Size(KB)= <%= ii[:size] %> ,
+透過= <%= ii[:transparent] %> ,
+Type= <%= ii[:type] %></dd>
+  </dl></dd>
+<% end # @imageInfo.each %>
+</dl>
+</div>
+<%end%>

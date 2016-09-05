@@ -20,6 +20,18 @@ $(document).ready(function(){
 
     <%= render 'layouts/header' %>
     <div class="container">
+
+    <!-- start ドメインが 13.78.48.83 じゃなかったらアラートを表示 -->
+    <script language="JavaScript"><!--
+    if(document.domain != "13.78.48.83"){
+    	console.log("ドメイン名："+document.domain);
+    	$('#linkmsg').append('	<a class="list-group-item list-group-item-danger" href="http://13.78.48.83/preview-tools/">このページはテストページです。ここをクリックしてすぐに移動してください。</a>');
+    }
+    // --></script>
+    <div id="linkmsg" class="list-group">
+    </div>
+    <!-- end ドメインが 13.78.48.83 じゃなかったらアラートを表示 -->
+
       <%= yield %>
       <%= render 'layouts/footer' %>
     </div>
